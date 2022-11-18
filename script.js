@@ -4,6 +4,11 @@ const PRODUCTS = productArray;
 const productsSection = document.getElementById("products");
 const orderedProducts = document.getElementById("ordered-products");
 const totalPrice = document.getElementById("total-price");
+const cardDetails = document.getElementById("card-details");
+const completeBtn = document.getElementById("complete-btn");
+const paymentBtn = document.getElementById("payment");
+const thanksDiv = document.getElementById("thank-you");
+
 const productCart = [];
 
 renderProductHTML();
@@ -42,10 +47,10 @@ function renderCart() {
   );
 
   if (productCart.length) {
-    orderedProducts.parentElement.style.display = "inline"
+    orderedProducts.parentElement.classList.remove("display-none");
     return (orderedProducts.innerHTML = cartDivs.join(""));
   } else {
-    orderedProducts.parentElement.style.display = "none"
+    orderedProducts.parentElement.classList.add("display-none");
   }
 }
 
@@ -57,9 +62,9 @@ function calculateTotal() {
 
   total === 0
     ? ((totalPrice.textContent = ""),
-      (totalPrice.parentElement.style.display = "none"))
+      totalPrice.parentElement.classList.add("display-none"))
     : ((totalPrice.textContent = total),
-      (totalPrice.parentElement.style.display = "inline"));
+      totalPrice.parentElement.classList.remove("display-none"));
 }
 
 function addToCart(productIndex) {
@@ -75,3 +80,23 @@ function removeFromCart(productIndex) {
   calculateTotal();
   renderCart();
 }
+
+function togglePaymentDetails() {
+  cardDetails.classList.remove("display-none");
+}
+
+function submitPayment() {
+  thanksDiv.classList.remove("display-none");
+  cardDetails.classList.add("display-none");
+  productCart.splice(0, productCart.length);
+  calculateTotal();
+  renderCart();
+}
+
+completeBtn.addEventListener("click", togglePaymentDetails);
+
+cardDetails.addEventListener("submit", function (e) {
+  e.preventDefault();
+  submitPayment();
+  cardDetails.reset();
+});

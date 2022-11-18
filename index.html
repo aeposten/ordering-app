@@ -7,15 +7,34 @@
   <body>
     <main>
       <section id="products" class="products"></section>
-      <section id="cart" class="cart" style="display:none">
+      <section id="cart" class="cart display-none" >
         <h3>Your Order</h3>
-        <div class="ordered-products" id="ordered-products">
-        </div>
-        <div class="totals" style="display:none">
+        <div class="ordered-products" id="ordered-products"></div>
+        <div class="totals">
           <h3>Total Price</h3>
-        <div class="total-price" id="total-price"></div>
-      </div>
+          <div class="total-price" id="total-price"></div>
+          <button class="btn" id="complete-btn">Complete Order</button>
+        </div>
       </section>
+      <form class="card-details display-none" id="card-details">
+        <h3>Enter Payment Details</h3>
+        <label for="name">Enter Name:</label>
+        <input id="name" type="text" placeholder="Firstname Lastname" />
+        <label for="ccn">Credit Card Number:</label>
+        <input
+          id="ccn"
+          type="tel"
+          inputmode="numeric"
+          pattern="[0-9\s]{13,19}"
+          autocomplete="cc-number"
+          maxlength="19"
+          placeholder="xxxx xxxx xxxx xxxx"
+        />
+        <label for="cvv">Enter CVV:</label>
+        <input id="cvv" type="number" placeholder="xxx" maxlength="3" />
+        <input id="payment" type="submit" placeholder="Submit Payment" />
+      </form>
+      <div id="thank-you" class="thank-you display-none">Thank you for your order!</div>
     </main>
     <script src="script.js" type="module" defer></script>
   </body>
