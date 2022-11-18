@@ -1,43 +1,22 @@
 import { productArray } from "./data.js";
 
-// const productArray = [
-//     {
-//       name: "Custom Pattern",
-//       description:
-//         "A custom embroidery pattern based on the image or message of your choice.",
-//       images: ["img/plant-mom.jpg", "img/strong-women.jpg"],
-//       price: 50,
-//     },
-//     {
-//       name: "Pet Portrait",
-//       description: "An Embroidered pet portrait based on a photo you provide",
-//       images: ["img/rue.jpg", "img/goose.jpg"],
-//       price: 80,
-//     },
-//     {
-//       name: "Made to Order Embroidery",
-//       description:
-//         "A piece of embroidery based on one of my patterns or the pattern of your choice.",
-//       images: ["img/revenge.jpg", "img/grief.jpg"],
-//       price: 75,
-//     },
-//   ];
-
 const PRODUCTS = productArray;
 const productsSection = document.getElementById("products");
+const orderedProducts = document.getElementById("ordered-products");
+const totalPrice = document.getElementById("total-price")
 const productCart = [];
 
 renderProductHTML();
 
-document.addEventListener("click", function(e) {
+document.addEventListener("click", function (e) {
   addToCart(e.target.dataset.add);
-})
+});
 
 function renderProductHTML() {
   function renderImageHTML(images) {
     return images.map((image) => `<img src=${image} />`).join("");
   }
-  const productCards = PRODUCTS.map(
+  const productDivs = PRODUCTS.map(
     ({ product, name, images, description, price }, index) =>
       `<div id="product-${index}" class="product">
         <div class="product-images" id="img-${index}">${renderImageHTML(
@@ -47,10 +26,31 @@ function renderProductHTML() {
         <div class="add-to-cart" id="add-to-cart"><button data-add="${index}">Add</button></div>
     </div>`
   );
-  return (productsSection.innerHTML = productCards.join(""));
+  return (productsSection.innerHTML = productDivs.join(""));
+}
+
+function renderCart() {
+  const cartDivs = productCart.map(({ product, name, price }, index) => 
+    `<div class="product">
+    <span>${name}</span> <button>remove</button> <span>${price}</span>
+  </div>`
+  );
+
+  return (orderedProducts.innerHTML = cartDivs.join(""));
+}
+
+function calculateTotal() {
+  let total = 0;
+  productCart.forEach(({product, price}) => {
+    total += price
+  }
+  )
+  totalPrice.textContent = total;
 }
 
 function addToCart(productIndex) {
   productCart.push(PRODUCTS[productIndex]);
   console.log(productCart);
+  renderCart();
+  calculateTotal();
 }
