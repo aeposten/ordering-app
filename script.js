@@ -8,10 +8,12 @@ const cardDetails = document.getElementById("card-details");
 const completeBtn = document.getElementById("complete-btn");
 const paymentBtn = document.getElementById("payment");
 const thanksDiv = document.getElementById("thank-you");
-
+// const carouselClass = document.querySelectorAll(".carousel-img")
+let carousel;
 const productCart = [];
 
 renderProductHTML();
+generateImageCarousels();
 
 document.addEventListener("click", function (e) {
   if (e.target.dataset.add) {
@@ -22,21 +24,52 @@ document.addEventListener("click", function (e) {
 });
 
 function renderProductHTML() {
-  function renderImageHTML(images) {
-    return images.map((image) => `<img src=${image} />`).join("");
+  function renderImageHTML(images, productIndex) {
+    carousel = images.map(
+      (image, index) =>
+        `<div class="carousel-img" data-img="${productIndex}-${index}" style="background-image: url(${image})" ></div>`
+    );
+
+    return carousel.join("");
   }
+
   const productDivs = PRODUCTS.map(
     ({ product, name, images, description, price }, index) =>
       `<div id="product-${index}" class="product">
         <div class="product-images" id="img-${index}">${renderImageHTML(
-        images
+        images,
+        index
       )}</div>
         <div class="product-info"><h3 data-name="${index}">${name}</h3> <div class="description" data-description="${index}">${description}</div><div class="price" data-price="${index}">${price}</div> </div>
         <div class="add-to-cart" id="add-to-cart"><button data-add="${index}">Add</button></div>
     </div>`
   );
+
   return (productsSection.innerHTML = productDivs.join(""));
 }
+
+
+function generateImageCarousels() {
+  const carouselClass = document.querySelectorAll(".carousel-img");
+  carouselClass.forEach((item, index) => {
+    if (index % 2 === 0) {
+      item.classList.toggle("display-none");
+      carouselClass[index].addEventListener("click", function () {
+        carouselClass[index + 1].classList.toggle("display-none");
+        carouselClass[index].classList.toggle("display-none");
+        console.log(index);
+      });
+      
+    } else if (index % 2 !== 0) {
+      carouselClass[index].addEventListener("click", function () {
+        carouselClass[index - 1].classList.toggle("display-none");
+        carouselClass[index].classList.toggle("display-none");
+        console.log(index);
+      });
+    }
+  });
+}
+
 
 function renderCart() {
   const cartDivs = productCart.map(
@@ -98,5 +131,4 @@ completeBtn.addEventListener("click", togglePaymentDetails);
 cardDetails.addEventListener("submit", function (e) {
   e.preventDefault();
   submitPayment();
-  cardDetails.reset();
 });
