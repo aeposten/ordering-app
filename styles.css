@@ -1,10 +1,10 @@
 .carousel-img {
-    width: 200px;
-    height: 200px;
-    background-size: cover;
-    background-position: center;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
 }
 
 .display-none {
-    display: none;
+  display: none;
 }

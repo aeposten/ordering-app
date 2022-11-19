@@ -6,9 +6,8 @@ const orderedProducts = document.getElementById("ordered-products");
 const totalPrice = document.getElementById("total-price");
 const cardDetails = document.getElementById("card-details");
 const completeBtn = document.getElementById("complete-btn");
-const paymentBtn = document.getElementById("payment");
 const thanksDiv = document.getElementById("thank-you");
-// const carouselClass = document.querySelectorAll(".carousel-img")
+
 let carousel;
 const productCart = [];
 
@@ -48,7 +47,6 @@ function renderProductHTML() {
   return (productsSection.innerHTML = productDivs.join(""));
 }
 
-
 function generateImageCarousels() {
   const carouselClass = document.querySelectorAll(".carousel-img");
   carouselClass.forEach((item, index) => {
@@ -57,19 +55,15 @@ function generateImageCarousels() {
       carouselClass[index].addEventListener("click", function () {
         carouselClass[index + 1].classList.toggle("display-none");
         carouselClass[index].classList.toggle("display-none");
-        console.log(index);
       });
-      
     } else if (index % 2 !== 0) {
       carouselClass[index].addEventListener("click", function () {
         carouselClass[index - 1].classList.toggle("display-none");
         carouselClass[index].classList.toggle("display-none");
-        console.log(index);
       });
     }
   });
 }
-
 
 function renderCart() {
   const cartDivs = productCart.map(
