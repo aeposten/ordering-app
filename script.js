@@ -35,13 +35,15 @@ function renderProductHTML() {
   const productDivs = PRODUCTS.map(
     ({ product, name, images, description, price }, index) =>
       `<div id="product-${index}" class="product">
-        <div class="product-images" id="img-${index}">${renderImageHTML(
-        images,
-        index
-      )}</div>
-        <div class="product-info"><h3 data-name="${index}">${name}</h3> <div class="description" data-description="${index}">${description}</div><div class="price" data-price="${index}">${price}</div> </div>
-        <div class="add-to-cart" id="add-to-cart"><button data-add="${index}">Add</button></div>
-    </div>`
+          <div class="product-info">
+          <h3 data-name="${index}">${name}</h3>         
+          <div class="product-images" id="img-${index}">
+            ${renderImageHTML(images, index)}
+          </div>
+          <div class="description" data-description="${index}">${description}</div>
+          <div class="price" data-price="${index}">${price}</div>
+          <div class="add-to-cart" id="add-to-cart"><button data-add="${index}">Add</button></div>
+      </div>`
   );
 
   return (productsSection.innerHTML = productDivs.join(""));
