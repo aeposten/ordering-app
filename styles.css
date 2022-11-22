@@ -1,21 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
-
 :root {
-  --mainblck: #0D0709;
+  --mainblck: #0d0709;
 }
 
 body {
   margin: 0;
   background-color: var(--mainblck);
-  color: #F2CAA7;
+  color: #f2caa7;
 }
 
-h1, h3 {
+h1,
+h3 {
   font-family: "Philosopher", sans-serif;
-
 }
-
 
 main {
   font-family: "Mulish", sans-serif;
@@ -28,12 +26,11 @@ main {
   background-image: url("img/hero-header.jpg");
   background-size: cover;
   background-position: center;
-  border-bottom: 10px solid #BF3C30;
+  border-bottom: 10px solid #bf3c30;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 .products {
@@ -46,20 +43,30 @@ main {
   gap: 20px;
   align-items: center;
   align-content: center;
+  padding: 0 0 20px 20px;
+  border-bottom: 1px solid #bf3c30;
 }
 
 .carousel-img {
+  display: flex;
   width: 200px;
   height: 200px;
   border-radius: 8px;
   background-size: cover;
   background-position: center;
+  color: #bf3c30;
+  cursor: pointer;
+}
+
+.dots-span {
+  margin: auto auto 0 auto;
+  font-size: 30px;
 }
 
 .btn {
   width: 70px;
-  color: #F2CAA7;
-  background-color: #BF3C30;
+  color: #f2caa7;
+  background-color: #bf3c30;
   border: none;
   border-radius: 5px;
   text-align: center;
@@ -70,7 +77,6 @@ main {
   display: none;
 }
 
-
 .modal {
   position: fixed;
   top: 0;
@@ -80,4 +86,18 @@ main {
   height: 400px;
   width: 400px;
   margin: auto;
+  border-radius: 6px;
+  background-color: var(--mainblck);
+  border: 2px solid #bf3c30;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background: rgba(110, 110, 110, 0.7);
 }

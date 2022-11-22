@@ -7,6 +7,7 @@ const totalPrice = document.getElementById("total-price");
 const cardDetails = document.getElementById("card-details");
 const completeBtn = document.getElementById("complete-btn");
 const thanksDiv = document.getElementById("thank-you");
+const overlayEl = document.getElementById("overlay")
 
 let carousel;
 const productCart = [];
@@ -25,8 +26,8 @@ document.addEventListener("click", function (e) {
 function renderProductHTML() {
   function renderImageHTML(images, productIndex) {
     carousel = images.map(
-      (image, index) =>
-        `<div class="carousel-img" data-img="${productIndex}-${index}" style="background-image: url(${image})" ></div>`
+      ({image, src, dots}, index) =>
+        `<div class="carousel-img" data-img="${productIndex}-${index}" style="background-image: url(${src})" ><span class="dots-span">${dots}</span></div>`
     );
     return carousel.join("");
   }
@@ -71,17 +72,6 @@ function generateImageToggles() {
   });
 }
 
-// function generateImageToggles() {
-
-//   carousel.forEach((img, index) => {
-//     const toggleClass = document.querySelectorAll(".carousel-img");
-//     let current = 0;
-//     let next = current + 1;
-//     if (current === 0) {
-//       toggleClass[current].classList.toggle("display-none")
-//     }
-//   })
-// }
 
 function renderCart() {
   const cartDivs = productCart.map(
@@ -128,6 +118,7 @@ function removeFromCart(productIndex) {
 
 function togglePaymentDetails() {
   cardDetails.classList.toggle("display-none");
+  overlayEl.classList.toggle("display-none");
   cardDetails.classList.add("modal");
 }
 
@@ -147,5 +138,6 @@ cardDetails.addEventListener("submit", function (e) {
   submitPayment();
   setTimeout(() => {
     thanksDiv.classList.toggle("display-none");
+    overlayEl.classList.toggle("display-none");
   }, 4000)
 });
