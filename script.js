@@ -12,7 +12,7 @@ let carousel;
 const productCart = [];
 
 renderProductHTML();
-generateImageCarousels();
+generateImageToggles();
 
 document.addEventListener("click", function (e) {
   if (e.target.dataset.add) {
@@ -28,7 +28,6 @@ function renderProductHTML() {
       (image, index) =>
         `<div class="carousel-img" data-img="${productIndex}-${index}" style="background-image: url(${image})" ></div>`
     );
-
     return carousel.join("");
   }
 
@@ -49,23 +48,36 @@ function renderProductHTML() {
   return (productsSection.innerHTML = productDivs.join(""));
 }
 
-function generateImageCarousels() {
-  const carouselClass = document.querySelectorAll(".carousel-img");
-  carouselClass.forEach((item, index) => {
+function generateImageToggles() {
+  const toggleClass = document.querySelectorAll(".carousel-img");
+
+  toggleClass.forEach((item, index) => {
     if (index % 2 === 0) {
       item.classList.toggle("display-none");
-      carouselClass[index].addEventListener("click", function () {
-        carouselClass[index + 1].classList.toggle("display-none");
-        carouselClass[index].classList.toggle("display-none");
+      toggleClass[index].addEventListener("click", function () {
+        toggleClass[index + 1].classList.toggle("display-none");
+        toggleClass[index].classList.toggle("display-none");
       });
     } else if (index % 2 !== 0) {
-      carouselClass[index].addEventListener("click", function () {
-        carouselClass[index - 1].classList.toggle("display-none");
-        carouselClass[index].classList.toggle("display-none");
+      toggleClass[index].addEventListener("click", function () {
+        toggleClass[index - 1].classList.toggle("display-none");
+        toggleClass[index].classList.toggle("display-none");
       });
     }
   });
 }
+
+// function generateImageToggles() {
+
+//   carousel.forEach((img, index) => {
+//     const toggleClass = document.querySelectorAll(".carousel-img");
+//     let current = 0;
+//     let next = current + 1;
+//     if (current === 0) {
+//       toggleClass[current].classList.toggle("display-none")
+//     }
+//   })
+// }
 
 function renderCart() {
   const cartDivs = productCart.map(
