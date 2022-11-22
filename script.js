@@ -41,7 +41,7 @@ function renderProductHTML() {
           </div>
           <div class="description" data-description="${index}">${description}</div>
           <div class="price" data-price="${index}">${price}</div>
-          <div class="add-to-cart" id="add-to-cart"><button data-add="${index}">Add</button></div>
+          <div class="add-to-cart" id="add-to-cart"><button class="btn" data-add="${index}">Add</button></div>
       </div>`
   );
 
@@ -83,7 +83,7 @@ function renderCart() {
   const cartDivs = productCart.map(
     ({ product, name, price }, index) =>
       `<div class="product">
-    <span>${name}</span> <button data-remove="${index}">remove</button> <span>${price}</span>
+    <span>${name}</span> <button class="btn" data-remove="${index}">remove</button> <span>${price}</span>
   </div>`
   );
 
@@ -123,12 +123,14 @@ function removeFromCart(productIndex) {
 }
 
 function togglePaymentDetails() {
-  cardDetails.classList.remove("display-none");
+  cardDetails.classList.toggle("display-none");
+  cardDetails.classList.add("modal");
 }
 
 function submitPayment() {
-  thanksDiv.classList.remove("display-none");
-  cardDetails.classList.add("display-none");
+  cardDetails.classList.toggle("display-none");
+  thanksDiv.classList.toggle("display-none");
+  thanksDiv.classList.add("modal");
   productCart.splice(0, productCart.length);
   calculateTotal();
   renderCart();
@@ -139,4 +141,7 @@ completeBtn.addEventListener("click", togglePaymentDetails);
 cardDetails.addEventListener("submit", function (e) {
   e.preventDefault();
   submitPayment();
+  setTimeout(() => {
+    thanksDiv.classList.toggle("display-none");
+  }, 4000)
 });

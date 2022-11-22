@@ -19,7 +19,7 @@
           <button class="btn" id="complete-btn">Complete Order</button>
         </div>
       </section>
-      <form class="card-details display-none" id="card-details">
+      <form class="display-none" id="card-details">
         <h3>Enter Payment Details</h3>
         <label for="name">Enter Name:</label>
         <input id="name" type="text" placeholder="Firstname Lastname" />
@@ -35,9 +35,9 @@
         />
         <label for="cvv">Enter CVV:</label>
         <input id="cvv" type="number" placeholder="xxx" maxlength="3" />
-        <input id="payment" type="submit" placeholder="Submit Payment" />
+        <input id="payment"  class="btn" type="submit" placeholder="Submit Payment" />
       </form>
-      <div id="thank-you" class="thank-you display-none">
+      <div id="thank-you" class="display-none">
         Thank you for your order!
       </div>
     </main>
