@@ -24,7 +24,7 @@ main {
 .hero {
   margin: 0 auto;
   padding: 0;
-  height: 30vh;
+  height: 20vh;
   background-image: url("img/hero-header.jpg");
   background-size: cover;
   background-position: center;
@@ -36,9 +36,22 @@ main {
 
 }
 
+.products {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  align-content: center;
+}
+
 .carousel-img {
   width: 200px;
   height: 200px;
+  border-radius: 8px;
   background-size: cover;
   background-position: center;
 }

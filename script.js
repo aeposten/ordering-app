@@ -35,13 +35,17 @@ function renderProductHTML() {
     ({ product, name, images, description, price }, index) =>
       `<div id="product-${index}" class="product">
           <div class="product-info">
-          <h3 data-name="${index}">${name}</h3>         
-          <div class="product-images" id="img-${index}">
-            ${renderImageHTML(images, index)}
+            <div>
+            <h3 data-name="${index}">${name}</h3>         
+            <div class="product-images" id="img-${index}">
+              ${renderImageHTML(images, index)}
+            </div>
           </div>
-          <div class="description" data-description="${index}">${description}</div>
-          <div class="price" data-price="${index}">${price}</div>
-          <div class="add-to-cart" id="add-to-cart"><button class="btn" data-add="${index}">Add</button></div>
+          <div>
+            <div class="description" data-description="${index}">${description}</div>
+            <div class="price" data-price="${index}">$ ${price}.00</div>
+            <div class="add-to-cart" id="add-to-cart"><button class="btn" data-add="${index}">Add</button></div>
+          </div>
       </div>`
   );
 
