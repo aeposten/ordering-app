@@ -22,6 +22,12 @@ function selectComponent(elementId) {
   return component;
 }
 
+//Dynamically toggles display-none css class
+function toggleDisplayNone(element) {
+  return element.classList.toggle("display-none")
+}
+
+// Uses add or remove from cart functions based on dataset
 document.addEventListener("click", function (e) {
   if (e.target.dataset.add) {
     addToCart(e.target.dataset.add);
@@ -132,15 +138,15 @@ function calculateTotal() {
 
 // Toggles modal for paymentDetails
 function togglePaymentDetails() {
-  cardDetails.classList.toggle("display-none");
-  overlayEl.classList.toggle("display-none");
+  toggleDisplayNone(cardDetails)
+  toggleDisplayNone(overlayEl)
   cardDetails.classList.add("modal");
 }
 
 // Submits payment
 function submitPayment() {
-  cardDetails.classList.toggle("display-none");
-  thanksDiv.classList.toggle("display-none");
+  toggleDisplayNone(cardDetails)
+  toggleDisplayNone(thanksDiv)
   thanksDiv.classList.add("modal");
   productCart.splice(0, productCart.length);
   calculateTotal();
@@ -155,12 +161,12 @@ cardDetails.addEventListener("submit", function (e) {
   e.preventDefault();
   const CCFormData = new FormData(cardDetails);
   const fullName = CCFormData.get("fullName");
-  console.log(fullName);
   thanksDiv.innerText = `Thank you ${fullName}`;
 
   submitPayment();
   setTimeout(() => {
-    thanksDiv.classList.toggle("display-none");
-    overlayEl.classList.toggle("display-none");
+    toggleDisplayNone(thanksDiv)
+    toggleDisplayNone(overlayEl)
   }, 4000);
 });
+

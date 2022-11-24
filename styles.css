@@ -3,12 +3,13 @@
 :root {
   --mainblck: #0d0709;
   --rust: #bf3c30;
+  --coral: #f2caa7;
 }
 
 body {
   margin: 0;
   background-color: var(--mainblck);
-  color: #f2caa7;
+  color: var(--coral);
 }
 
 h1,
@@ -66,12 +67,13 @@ main {
 
 .btn {
   width: 70px;
-  color: #f2caa7;
+  color: var(--coral);
   background-color: var(--rust);
   border: none;
   border-radius: 5px;
   text-align: center;
   padding: 4px 8px;
+  cursor: pointer;
 }
 
 .display-none {
