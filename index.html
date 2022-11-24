@@ -19,11 +19,11 @@
           <button class="btn" id="complete-btn">Complete Order</button>
         </div>
       </section>
-      <div class="overlay display-none" id="overlay">
-        <form class="display-none" id="card-details">
+      <div class="overlay alignment display-none" id="overlay">
+        <form class="display-none alignment" id="card-details">
           <h3>Enter Payment Details</h3>
-          <label for="name">Enter Name:</label>
-          <input id="name" type="text" placeholder="Firstname Lastname" />
+          <label for="fullName">Enter Name:</label>
+          <input id="fullName" name="fullName" type="text" placeholder="First Name Last Name" />
           <label for="ccn">Credit Card Number:</label>
           <input
             id="ccn"
@@ -43,7 +43,7 @@
             placeholder="Submit Payment"
           />
         </form>
-        <div id="thank-you" class="display-none">Thank you for your order!</div>
+        <div id="thank-you" class="display-none alignment"></div>
       </div>
     </main>
     <script src="script.js" type="module" defer></script>
