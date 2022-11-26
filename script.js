@@ -8,13 +8,13 @@ const cardDetails = selectComponent("card-details");
 const completeBtn = selectComponent("complete-btn");
 const thanksDiv = selectComponent("thank-you");
 const overlayEl = selectComponent("overlay");
+const modalEl = selectComponent("modal");
 
 let carousel;
 const productCart = [];
 
 renderProductHTML();
 generateImageToggles();
-
 
 // Dynamically selects component by id
 function selectComponent(elementId) {
@@ -24,7 +24,7 @@ function selectComponent(elementId) {
 
 //Dynamically toggles display-none css class
 function toggleDisplayNone(element) {
-  return element.classList.toggle("display-none")
+  return element.classList.toggle("display-none");
 }
 
 // Uses add or remove from cart functions based on dataset
@@ -35,7 +35,6 @@ document.addEventListener("click", function (e) {
     removeFromCart(e.target.dataset.remove);
   }
 });
-
 
 //Renders HTML for each product in PRODUCTS array
 function renderProductHTML() {
@@ -53,12 +52,12 @@ function renderProductHTML() {
       `<div id="product-${index}" class="product">
           <div class="product-info">
             <div>
-            <h3 data-name="${index}">${name}</h3>         
+            <h3 class="philosopher" data-name="${index}">${name}</h3>         
             <div class="product-images" id="img-${index}">
               ${renderImageHTML(images, index)}
             </div>
           </div>
-          <div>
+          <div class="mulish"">
             <div class="description" data-description="${index}">${description}</div>
             <div class="price" data-price="${index}">$ ${price}.00</div>
             <div class="add-to-cart" id="add-to-cart"><button class="btn" data-add="${index}">Add</button></div>
@@ -93,8 +92,8 @@ function generateImageToggles() {
 function renderCart() {
   const cartDivs = productCart.map(
     ({ product, name, price }, index) =>
-      `<div class="product">
-    <span>${name}</span> <button class="btn" data-remove="${index}">remove</button> <span>${price}</span>
+      `<div class="product mulish">
+    <span>${name}</span> <span>$ ${price}.00 </span> <button class="btn" data-remove="${index}">remove</button>
   </div>`
   );
 
@@ -106,7 +105,7 @@ function renderCart() {
   }
 }
 
-//Adds items to productCart 
+//Adds items to productCart
 function addToCart(productIndex) {
   productCart.push(PRODUCTS[productIndex]);
 
@@ -138,16 +137,23 @@ function calculateTotal() {
 
 // Toggles modal for paymentDetails
 function togglePaymentDetails() {
-  toggleDisplayNone(cardDetails)
-  toggleDisplayNone(overlayEl)
-  cardDetails.classList.add("modal");
+  //removes display-none from card-details and overlay
+  toggleDisplayNone(cardDetails);
+  toggleDisplayNone(overlayEl);
+
+  //adds modal to card-details
+  cardDetails.classList.toggle("modal");
 }
 
 // Submits payment
 function submitPayment() {
-  toggleDisplayNone(cardDetails)
-  toggleDisplayNone(thanksDiv)
-  thanksDiv.classList.add("modal");
+  //removes display-none from card-details
+  toggleDisplayNone(cardDetails);
+  //adds display-none to thanks
+  toggleDisplayNone(thanksDiv);
+
+  //adds modal to thanks
+  thanksDiv.classList.toggle("modal");
   productCart.splice(0, productCart.length);
   calculateTotal();
   renderCart();
@@ -165,8 +171,7 @@ cardDetails.addEventListener("submit", function (e) {
 
   submitPayment();
   setTimeout(() => {
-    toggleDisplayNone(thanksDiv)
-    toggleDisplayNone(overlayEl)
-  }, 4000);
+    toggleDisplayNone(thanksDiv);
+    toggleDisplayNone(overlayEl);
+  }, 3000);
 });
-
