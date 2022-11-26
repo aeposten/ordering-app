@@ -1,17 +1,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
+/* Variables for colors */
 :root {
   --mainblck: #0d0709;
   --rust: #bf3c30;
   --coral: #f2caa7;
 }
 
+/* Formatting for body */
 body {
   margin: 0;
   background-color: var(--mainblck);
   color: var(--coral);
 }
 
+/* General formatting classes */
+.alignment {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.display-none {
+  display: none;
+}
+
+/* Typography */
 .philospher {
   font-family: "Philosopher", sans-serif;
 }
@@ -20,6 +35,7 @@ body {
   font-family: "Mulish", sans-serif;
 }
 
+/* Styling for header */
 .hero {
   margin: 0 auto;
   padding: 0;
@@ -34,6 +50,7 @@ body {
   align-items: center;
 }
 
+/* Styling for rendered products */
 .products {
   display: flex;
   flex-direction: column;
@@ -48,6 +65,7 @@ body {
   border-bottom: 1px solid var(--rust);
 }
 
+/* Styling for "image carousel" */
 .carousel-img {
   display: flex;
   width: 200px;
@@ -64,7 +82,7 @@ body {
   font-size: 30px;
 }
 
-
+/* Styling for buttons and input type submit */
 .btn {
   width: 70px;
   color: var(--coral);
@@ -77,16 +95,14 @@ body {
   cursor: pointer;
 }
 
+/* Styling for item cart */
 .cart {
   display: flex;
   flex-direction: column;
   padding: 0 0 20px 20px;
 }
 
-.display-none {
-  display: none;
-}
-
+/* Styling for modal */
 .modal {
   position: fixed;
   display: flex;
@@ -115,11 +131,4 @@ input {
 .inputs {
   display: flex;
   flex-direction: column;
-}
-
-.alignment {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
