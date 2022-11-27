@@ -67,7 +67,6 @@ body {
 
 /* Styling for "image carousel" */
 .carousel-img {
-  display: flex;
   width: 200px;
   height: 200px;
   border-radius: 8px;
@@ -75,6 +74,7 @@ body {
   background-position: center;
   color: var(--rust);
   cursor: pointer;
+  text-align: center;
 }
 
 .dots-span {

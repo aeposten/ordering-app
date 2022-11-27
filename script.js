@@ -75,6 +75,7 @@ function generateImageToggles() {
   toggleClass.forEach((item, index) => {
     if (index % 2 === 0) {
       item.classList.toggle("display-none");
+      console.log(item.classList)
       toggleClass[index].addEventListener("click", function () {
         toggleClass[index + 1].classList.toggle("display-none");
         toggleClass[index].classList.toggle("display-none");
@@ -173,5 +174,5 @@ cardDetails.addEventListener("submit", function (e) {
   setTimeout(() => {
     toggleDisplayNone(thanksDiv);
     toggleDisplayNone(overlayEl);
-  }, 3000);
+  }, 4000);
 });
